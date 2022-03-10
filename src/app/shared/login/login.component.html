@@ -1,0 +1,38 @@
+<form [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Correo electrónico</label>
+        <input type="email" 
+            class="form-control"
+            [class.is-invalid] ="inputInvalid('email')"
+            id="email"
+            formControlName="email">
+        <p><small class="text-danger" 
+            [class]="inputInvalid('email') ? 'visible' : 'invisible'"> {{ emailError() }} </small>
+        </p> 
+
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" 
+            class="form-control"
+            [class.is-invalid] ="inputInvalid('password')"
+            id="password"
+            formControlName="password">
+        <p><small class="text-danger" 
+            [class]="inputInvalid('password') ? 'visible' : 'invisible'"> 
+            Introduce la contraseña </small>
+        </p> 
+
+    </div>
+
+    <div class="float-end mt-2">
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+    </div>
+    
+</form>
+
+<!-- <dl>
+    <dt>Email errors</dt>
+    <dd><pre> {{ loginForm.controls['email'].errors | json }} </pre></dd>
+    <dt>Password errors</dt>
+    <dd><pre> {{ loginForm.controls['password'].errors | json }} </pre></dd>
+</dl> -->

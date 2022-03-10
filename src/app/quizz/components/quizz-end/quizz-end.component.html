@@ -1,0 +1,38 @@
+<h2 class="text-center border-bottom pb-3">¡Juego terminado!</h2>
+
+<div class="row my-3 text-center">
+    <h3> Tiempo: {{ time | number:'1.2-2' }}"</h3>
+    <h3> Puntos: {{ points }} </h3>
+    <pre class="text-danger">Añadir records, intentos, amigos...</pre>
+</div>
+
+<div class="row justify-content-around">
+
+    <div class="col-12 col-sm-4 px-2 py-2 py-sm-4 text-center">
+        <button type="button" 
+            class="btn btn-primary w-100"
+            style="max-width: 300px;" 
+            (click)="retry()" >
+            Reintentar
+        </button>
+    </div>
+
+    <div class="col-12 col-sm-4 px-2 py-2 py-sm-4 text-center">
+        <button type="button" 
+            class="btn btn-primary w-100"
+            style="max-width: 300px;" 
+            routerLink="juegos" >
+            Otro juego
+        </button>
+    </div>
+
+    <div class="col-12 col-sm-4 px-2 py-2 py-sm-4 text-center">
+        <button type="button" 
+            class="btn btn-primary w-100"
+            style="max-width: 300px;" 
+            (click)="tops()" >
+            Clasificación
+        </button>
+    </div>
+
+</div>

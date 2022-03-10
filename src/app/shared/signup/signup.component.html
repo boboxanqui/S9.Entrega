@@ -1,0 +1,71 @@
+<form [formGroup]="signupForm" (submit)="onSubmit()" novalidate>
+
+    <div class="mb-3">
+
+        <!-- Username -->
+        <label class="form-label">Nombre de usuario</label>
+        <input type="text" 
+            class="form-control"
+            [class.is-invalid] ="inputInvalid('username')"
+            formControlName="username">
+        <p><small class="text-danger" 
+                [class]="inputInvalid('username') ? 'visible' : 'invisible'"> 
+                Introduce nombre de usuario </small>
+        </p> 
+
+        <!-- Email -->
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" 
+            class="form-control"
+            [class.is-invalid] ="inputInvalid('email')"
+            formControlName="email">
+        <p><small class="text-danger" 
+                [class]="inputInvalid('email') ? 'visible' : 'invisible'"> 
+                {{ emailError() }} </small>
+        </p> 
+
+        <!-- Password -->
+        <label class="form-label">Contraseña</label>
+        <input type="password" 
+            class="form-control"
+            [class.is-invalid] ="inputInvalid('password')"
+            formControlName="password">
+        <p><small class="text-danger" 
+                [class]="inputInvalid('password') ? 'visible' : 'invisible'"> 
+                {{ passwordError() }} </small>
+        </p> 
+
+        <!-- Terms & Conditions -->
+        <input class="form-check-input" 
+            type="checkbox"
+            id="terms" 
+            value="terms"
+            name="terms"
+            formControlName="terms">
+        <label class="form-check-label ps-2" for="terms">
+          Aceptar <a href="!#">Terminos y condiciones</a>
+        </label>
+        <p class=" ms-4"><small class="text-danger" 
+            [class]="inputInvalid('terms') ? 'visible' : 'invisible'"> 
+            Terminos y condicions no aceptados </small>
+        </p> 
+
+</div>
+
+    <div class="float-end mt-2">
+        <button type="submit" class="btn btn-primary">Aceptar</button>
+    </div>
+
+    
+</form>
+
+<!-- <dl>
+    <dt>Email errors</dt>
+    <dd><pre> {{ signupForm.controls['email'].errors | json }} </pre></dd>
+    <dt>Password errors</dt>
+    <dd><pre> {{ signupForm.controls['password'].errors | json }} </pre></dd>
+    <dt>Terms</dt>
+    <dd><pre> {{ signupForm.controls['terms'].value }} </pre></dd>
+    <dd><pre> {{ signupForm.controls['terms'].errors | json }} </pre></dd>
+
+</dl> -->
