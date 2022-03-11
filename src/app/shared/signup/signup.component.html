@@ -52,10 +52,19 @@
 
 </div>
 
-    <div class="float-end mt-2">
+    <div class="text-center mt-2">
         <button type="submit" class="btn btn-primary">Aceptar</button>
     </div>
 
+        <!-- Closing button -->
+        <button #closeModalSignup id="closeModalSignup" data-bs-dismiss="modal" 
+        aria-label="Close" class="btn d-none">Close</button>
+
+        <h5 class="text-center text-danger mt-3" *ngIf="signupError">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Usuario ya registrado
+        </h5>
+        
     
 </form>
 

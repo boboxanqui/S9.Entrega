@@ -6,6 +6,7 @@ import { HttpService } from '../../services/http.service';
 
 import { Question } from '../../interfaces/quizz.interface';
 import { Country } from '../../interfaces/api.interfaces';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-quizz',
@@ -16,7 +17,8 @@ export class QuizzComponent implements OnInit, OnDestroy {
 
   constructor(
     private httpService:HttpService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,10 @@ export class QuizzComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.subscribe( ({id}) => {
       switch (id){
-        case 'capitales': this.getCountriesList(); break;
+        case 'capitales': 
+          this.getCountriesList(); 
+          this.actualGame = 'capitales'
+          break;
 
         default: console.error('Not matching param from URL');
       }
@@ -54,7 +59,7 @@ export class QuizzComponent implements OnInit, OnDestroy {
   }
 
   // Game parameters
-  quizzLength: number = 3;
+  quizzLength: number = 10;
   countdown: number = 3;
   private _quizzTimer: number = 100;
 
@@ -64,6 +69,9 @@ export class QuizzComponent implements OnInit, OnDestroy {
   points: number = 0;
   showAnswer: boolean = false;
   correctAnswer: boolean = false;
+  actualGame: string = '';
+
+  // Observables subscriptions
   intervalCountdown!: Subscription;
   intervalQuizz!: Subscription;
 
@@ -92,7 +100,7 @@ export class QuizzComponent implements OnInit, OnDestroy {
     })
   }
 
-
+  // Obtención preguntas CAPITALES
   getCountriesList() {
     const subscription = this.httpService.getCountriesList().pipe(
         tap( resp =>{
@@ -161,8 +169,24 @@ export class QuizzComponent implements OnInit, OnDestroy {
 
   finishQuizz() {    
     this.totalTime = (Date.now() - this.startTime) / 1000 ;
-    console.log('Total time: ' + this.totalTime);
-    
+    // console.log('Total time: ' + this.totalTime);
+
+    const top = { 
+      user: this.authService.user.name,
+      game: this.actualGame,
+      time: this.totalTime,
+      points: this.points,
+    }
+
+    let topsArr = []
+
+    if(localStorage.getItem('tops')){
+      topsArr = JSON.parse(localStorage.getItem('tops')!) 
+    }
+
+    topsArr.push(top)
+
+    localStorage.setItem( 'tops', JSON.stringify(topsArr))
   }
 
 

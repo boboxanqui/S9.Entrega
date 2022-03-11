@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quizz-end',
@@ -9,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class QuizzEndComponent {
 
   constructor( 
-    private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
 

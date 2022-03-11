@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CatalogueComponent } from './quizz/pages/catalogue/catalogue.component';
-import { TopsComponent } from './quizz/pages/tops/tops.component';
 import { InicioComponent } from './welcome/inicio/inicio.component';
 
 const routes: Routes = [
@@ -15,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'clasificaciones',
-    component: TopsComponent
+    loadChildren: () => import('./tops/tops-routing.module').then( m => m.TopsRoutingModule )
   },
   {
     path: '**',
