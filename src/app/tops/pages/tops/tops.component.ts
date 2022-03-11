@@ -20,8 +20,6 @@ export class TopsComponent implements OnInit {
   
     this.topsArr = JSON.parse(localStorage.getItem('tops')!);
     this.topsArr.sort( (a, b) => a.points < b.points ? 1 : -1)
-
-    console.log(this.topsArr);
     
   }
 
