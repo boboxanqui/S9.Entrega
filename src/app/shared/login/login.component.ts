@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth.service';
 import { SharedService } from '../services/shared.service';
@@ -15,14 +16,11 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private shareService: SharedService,
     private authService: AuthService,
+    public modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-      this.shareService.showLogin$.subscribe( resp => {
-        if(resp){
-          this.loginForm.reset()
-        }  
-      })
+
   }
 
   @ViewChild('closeModal') closeModal!: ElementRef
@@ -66,6 +64,11 @@ export class LoginComponent implements OnInit {
         console.log(resp);
       }
     })    
+  }
+
+  openSignupModal(){
+    this.modalService.dismissAll();
+    this.shareService.openSignupModal()
   }
 
 

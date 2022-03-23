@@ -1,46 +1,70 @@
+<div class="modal-content">
 
-
-<form [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
-
-    <div class="mb-3">
-        <label for="email" class="form-label">Correo electrónico</label>
-        <input type="email" 
-            class="form-control"
-            [class.is-invalid] ="inputInvalid('email')"
-            id="email"
-            formControlName="email">
-        <p><small class="text-danger" 
-            [class]="inputInvalid('email') ? 'visible' : 'invisible'"> {{ emailError() }} </small>
-        </p> 
-
-        <label for="password" class="form-label">Contraseña</label>
-        <input type="password" 
-            class="form-control"
-            [class.is-invalid] ="inputInvalid('password')"
-            id="password"
-            formControlName="password">
-        <p><small class="text-danger" 
-            [class]="inputInvalid('password') ? 'visible' : 'invisible'"> 
-            Introduce la contraseña </small>
-        </p> 
-
+    <div class="d-flex justify-content-end">
+        <button type="button" 
+                class="mt-3 me-3 btn-close"
+                (click)="modalService.dismissAll()">
+        </button>
     </div>
 
-    <div class="mt-2 text-center">
-        <button type="submit" class="btn btn-primary mx-5" >Aceptar</button>
+    <h5 class="text-center">Iniciar sesión</h5>
+
+    <div class="modal-body">
+        
+        <form [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" 
+                    class="form-control"
+                    [class.is-invalid] ="inputInvalid('email')"
+                    id="email"
+                    formControlName="email">
+                <p><small class="text-danger" 
+                    [class]="inputInvalid('email') ? 'visible' : 'invisible'"> {{ emailError() }} </small>
+                </p> 
+
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" 
+                    class="form-control"
+                    [class.is-invalid] ="inputInvalid('password')"
+                    id="password"
+                    formControlName="password">
+                <p><small class="text-danger" 
+                    [class]="inputInvalid('password') ? 'visible' : 'invisible'"> 
+                    Introduce la contraseña </small>
+                </p> 
+
+            </div>
+
+            <div class="mt-2 text-center">
+                <button type="submit" class="btn btn-primary mx-5" >Aceptar</button>
+            </div>
+
+            
+            <!-- Closing button -->
+            <button #closeModal id="closeModalButton" data-bs-dismiss="modal" 
+            aria-label="Close" class="btn d-none">Close</button>
+            
+        </form>
+
+        <h5 class="text-center text-danger mt-3" *ngIf="loginError">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Correo y/o contraseña incorrectos
+        </h5>
     </div>
 
-    
-    <!-- Closing button -->
-    <button #closeModal id="closeModalButton" data-bs-dismiss="modal" 
-    aria-label="Close" class="btn d-none">Close</button>
-    
-</form>
+    <div class="text-center my-4">
+        <small>¿Aún no tienes cuenta? 
+            <a class="nav-link text-warning d-inline p-1"
+                (click)="openSignupModal()">
+                Crear usuario
+            </a>
+        </small>
+    </div>
 
-<h5 class="text-center text-danger mt-3" *ngIf="loginError">
-    <i class="fa-solid fa-circle-exclamation"></i>
-    Correo y/o contraseña incorrectos
-</h5>
+</div>
+
 
 <!-- <dl>
     <dt>Email errors</dt>

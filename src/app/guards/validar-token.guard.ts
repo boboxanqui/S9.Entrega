@@ -3,6 +3,8 @@ import { CanActivate, CanLoad, Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginGuardComponent } from '../shared/login-guard/login-guard.component';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
 
   constructor( 
     private authService: AuthService,
-    private router: Router 
+    private router: Router,
+    private modalService: NgbModal
   ){}
 
 
@@ -22,22 +25,12 @@ export class ValidarTokenGuard implements CanActivate, CanLoad {
       tap( resp => {
         if( !resp ){
           console.log('Bloqueado por canActivate');
-          
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Solo disponible para usuarios',
-            showCloseButton: true,
-            confirmButtonText:`
-            <span  
-              (click)="setShowLogin(true)" 
-              data-bs-toggle="modal" 
-              data-bs-target="#loginModal">
-              <i class="fa-solid fa-user"></i>
-              Iniciar session
-            </span>`,
-            confirmButtonAriaLabel: 'Iniciar session',
+
+          this.modalService.open(LoginGuardComponent, {
+            animation: true,
+            centered: true,
           })
+          
         }
       } )
     );

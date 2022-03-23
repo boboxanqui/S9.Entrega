@@ -6,6 +6,7 @@ import { QuizzRouting } from './quizz-routing.module';
 import { CatalogueComponent } from './pages/catalogue/catalogue.component';
 import { QuizzComponent } from './pages/quizz/quizz.component';
 import { QuizzEndComponent } from './components/quizz-end/quizz-end.component';
+import { LoginGuardComponent } from '../shared/login-guard/login-guard.component';
 
 
 
@@ -13,7 +14,8 @@ import { QuizzEndComponent } from './components/quizz-end/quizz-end.component';
   declarations: [
     QuizzComponent,
     CatalogueComponent,
-    QuizzEndComponent
+    QuizzEndComponent,
+    LoginGuardComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,7 @@ import { QuizzEndComponent } from './components/quizz-end/quizz-end.component';
   ],
   exports: [
     QuizzComponent,
+    LoginGuardComponent
   ]
 })
 export class QuizzModule { }

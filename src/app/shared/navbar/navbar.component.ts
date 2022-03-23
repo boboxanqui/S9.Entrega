@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../auth.service';
+import { LoginComponent } from '../login/login.component';
 import { SharedService } from '../services/shared.service';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +15,7 @@ export class NavbarComponent implements OnInit {
   constructor( 
     private sharedService: SharedService,
     private authService: AuthService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -23,13 +27,20 @@ export class NavbarComponent implements OnInit {
     return this.authService.user.name ? this.authService.user : undefined ;
   }
 
-  setShowLogin( value: boolean ){
-    this.sharedService.setShowLogin( value );
+  openLoginModal(){
+    this.modalService.open(LoginComponent,{
+      centered: true,
+      animation: true,
+    })
   }
 
-  setShowSignup( value: boolean ){
-    this.sharedService.setShowSignup( value );
+  openSignupModal(){
+    this.modalService.open(SignupComponent,{
+      centered: true,
+      animation: true,
+    })
   }
+
 
   logout(){
     console.log(this.user);

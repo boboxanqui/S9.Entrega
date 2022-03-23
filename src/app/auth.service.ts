@@ -8,7 +8,8 @@ import { AuthResponse, User } from './shared/interfaces/auth.interfaces';
 })
 export class AuthService {
 
-  constructor( private http: HttpClient ) { }
+  constructor( 
+    private http: HttpClient, ) { }
 
   private baseUrl: string = 'http://localhost:4000/api'
   private _user!: User;

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth.service';
 import { SharedService } from '../services/shared.service';
@@ -15,19 +16,15 @@ export class SignupComponent implements OnInit {
   constructor( 
     private fb: FormBuilder,
     private shareService: SharedService,
-    private authService: AuthService
+    private authService: AuthService,
+    public modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
-      this.shareService.showSignup$.subscribe( resp => {
-        if(resp){
-          this.signupForm.reset()
-        }  
-      })
+
   }
 
   @ViewChild('closeModalSignup') closeModal!: ElementRef
-
 
   emailPattern: string =  "^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{1,}$";
   passwordPattern: string = "([a-zA-Z]+[0-9]+)|([0-9]+[a-zA-Z]+)";
@@ -94,6 +91,11 @@ export class SignupComponent implements OnInit {
       }
     })
     
+  }
+
+  openLoginModal(){
+    this.modalService.dismissAll();
+    this.shareService.openLoginModal()
   }
 
 

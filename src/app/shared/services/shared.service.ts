@@ -1,29 +1,35 @@
 import { Injectable } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
+
+import { LoginComponent } from '../login/login.component';
+import { SignupComponent } from '../signup/signup.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
 
-  constructor() { }
-
-  private _showLogin = new Subject<boolean>();
-  private _showSignup = new Subject<boolean>();
-
-  get showLogin$(){
-    return this._showLogin;
+  constructor(
+    private modalService: NgbModal
+  ) { }
+  
+  //Modal openers
+  openLoginModal(){
+    this.modalService.open(LoginComponent,{
+      centered: true,
+      animation: true,
+    })
   }
 
-  get showSignup$() {
-    return this._showSignup
+  openSignupModal(){
+    this.modalService.open(SignupComponent,{
+      centered: true,
+      animation: true,
+    })
   }
 
-  setShowLogin( value: boolean ){
-    this._showLogin.next( value )
-  }
+  openLoginGuardModal(){
 
-  setShowSignup( value: boolean ){
-    this._showSignup.next( value )
   }
 }

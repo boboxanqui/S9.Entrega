@@ -64,7 +64,7 @@
                         <ul class="navbar-nav flex-row justify-content-center justify-content-md-end mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link" 
-                                    (click)="setShowLogin(true)" 
+                                    (click)="openLoginModal()" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#loginModal">
                                     <i class="fa-solid fa-user"></i>
@@ -74,7 +74,7 @@
                             <li class="nav-link disabled mx-2">/</li>
                             <li class="nav-item">
                                 <a class="nav-link"
-                                    (click)="setShowSignup(true)" 
+                                    (click)="openSignupModal()" 
                                     data-bs-toggle="modal" 
                                     data-bs-target="#signupModal">
                                     <i class="fa-solid fa-user-plus"></i>
@@ -93,81 +93,6 @@
 
 <!-- Log in Modal -->
 
-<div class="modal fade" 
-    id="loginModal" 
-    tabindex="-1" 
-    aria-labelledby="loginModalLabel" 
-    aria-hidden="true"
-    #login>
-
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="loginModalLabel">Iniciar sesión</h5>
-                <button type="button" 
-                    class="btn-close" 
-                    data-bs-dismiss="modal" 
-                    aria-label="Close">
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <app-login></app-login>
-            </div>
-
-            <div class="text-center my-4">
-                <small>¿Aún no tienes cuenta? 
-                    <a class="nav-link text-warning d-inline p-1"
-                        (click)="setShowSignup(true)" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#signupModal">
-                        Crear usuario
-                    </a>
-                </small>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 <!-- Sign up Modal -->
 
-<div class="modal fade" 
-    id="signupModal" 
-    tabindex="-1" 
-    aria-labelledby="signupModalLabel" 
-    aria-hidden="true">
-
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="signupModalLabel">Nuevo usuario</h5>
-                <button type="button" 
-                    class="btn-close" 
-                    data-bs-dismiss="modal" 
-                    aria-label="Close">
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <app-signup></app-signup>
-            </div>
-
-            <div class="text-center my-4">
-                <small>¿Ya tienes cuenta? 
-                    <a class="nav-link text-warning d-inline p-1"
-                        (click)="setShowLogin(true)" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#loginModal">
-                        Iniciar sesion
-                    </a>
-                </small>
-            </div>
-
-        </div>
-    </div>
-
-</div>
